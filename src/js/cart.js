@@ -13,6 +13,16 @@ function renderCartContents() {
   if (items.length > 0) {
     const htmlItems = items.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
+    // 1. Show the footer
+    const cartFooter = document.querySelector(".cart-footer");
+    cartFooter.classList.remove("hide");
+
+    // 2. Calculate the total
+    const total = items.reduce((sum, item) => sum + item.FinalPrice, 0);
+
+    // 3. Display the total
+    const totalElement = document.querySelector(".cart-total");
+    totalElement.innerHTML = `Total: $${total.toFixed(2)}`;
   } else {
     // If empty, show a nice message instead of a blank space
     document.querySelector(".product-list").innerHTML = "<p>Your cart is currently empty. Go find some gear!</p>";
