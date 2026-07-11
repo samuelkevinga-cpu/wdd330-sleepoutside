@@ -291,17 +291,15 @@ footer {
   padding: 1em;
 }
 
-.flash-message {
+.modal {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #2e7d32;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   z-index: 1000;
 }
 
