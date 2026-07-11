@@ -19,7 +19,7 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
-    this.quickView = new QuickView(dataSource);
+
   }
   
   async init() {
@@ -30,17 +30,5 @@ export default class ProductList {
   
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-    
-    this.addQuickViewEvents();
-  }
-
-  addQuickViewEvents() {
-    const buttons = document.querySelectorAll(".quick-view-btn");
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        this.quickView.show(button.dataset.id);
-      });
-    });
   }
 }
