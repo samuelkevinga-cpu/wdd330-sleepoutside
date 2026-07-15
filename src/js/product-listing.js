@@ -22,3 +22,65 @@ if (titleElement) {
   const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
   titleElement.innerHTML = `Top Products: ${formattedCategory}`;
 }
+
+// --- 6. SEARCH FUNCTIONALITY ---
+function initSearch() {
+  const searchInput = document.getElementById("search-input");
+  const searchButton = document.getElementById("search-button");
+  const productList = document.querySelector(".product-list");
+
+  // Ensure the elements exist on this page before running
+  if (!searchInput || !searchButton || !productList) return;
+
+  function performSearch() {
+    const query = searchInput.value.toLowerCase();
+    // Select all rendered product cards (the <li> elements inside the <ul>)
+    const productCards = productList.children; 
+    let hasVisibleProducts = false;
+
+    Array.from(productCards).forEach(card => {
+      // Ignore the "no results" message if it exists
+      if (card.id === "no-results-msg") return;
+
+      // Check if the text inside the card matches the search query
+      const text = card.textContent.toLowerCase();
+      if (text.includes(query)) {
+        card.style.display = ""; // Show the card
+        hasVisibleProducts = true;
+      } else {
+        card.style.display = "none"; // Hide the card
+      }
+    });
+
+    // Handle displaying a "No products found" message
+    let noResultsMsg = document.getElementById("no-results-msg");
+    if (!hasVisibleProducts) {
+      if (!noResultsMsg) {
+        noResultsMsg = document.createElement("li");
+        noResultsMsg.id = "no-results-msg";
+        noResultsMsg.textContent = "No products found matching your search.";
+        noResultsMsg.style.textAlign = "center";
+        noResultsMsg.style.width = "100%";
+        noResultsMsg.style.fontSize = "1.2rem";
+        noResultsMsg.style.marginTop = "2rem";
+        productList.appendChild(noResultsMsg);
+      }
+      noResultsMsg.style.display = "block";
+    } else {
+      if (noResultsMsg) noResultsMsg.style.display = "none";
+    }
+  }
+
+  // Trigger search on button click
+  searchButton.addEventListener("click", performSearch);
+  
+  // Trigger search when pressing the "Enter" key
+  searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      performSearch();
+    }
+  });
+}
+
+// Initialize the search event listeners
+initSearch();
