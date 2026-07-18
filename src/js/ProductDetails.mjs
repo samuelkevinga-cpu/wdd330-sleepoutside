@@ -61,6 +61,7 @@ function productDetailsTemplate(product) {
     product.DescriptionHtmlSimple;
 
   document.getElementById("addToCart").dataset.id = product.Id;
+  renderDiscount(product);
 }
 
 function showFlashMessage(message) {
@@ -68,4 +69,22 @@ function showFlashMessage(message) {
   flash.className = "flash-message";
   flash.textContent = message;
   document.body.appendChild(flash);
+}
+
+function renderDiscount(product) {
+  const discountEl = document.querySelector(".product-discount");
+  if (!discountEl) return;
+
+  const original = product.SuggestedRetailPrice;
+  const final = product.FinalPrice;
+
+  if (original && original > final) {
+    const amountOff = (original - final).toFixed(2);
+    const percentOff = Math.round(((original - final) / original) * 100);
+    discountEl.textContent = `Save $${amountOff} (${percentOff}% off)`;
+    discountEl.classList.remove("hidden");
+  } else {
+    discountEl.textContent = "";
+    discountEl.classList.add("hidden");
+  }
 }
