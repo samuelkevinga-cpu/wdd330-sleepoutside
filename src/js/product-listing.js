@@ -1,24 +1,24 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import { updateCartCount } from "./utils.mjs";
-
-/*
-const dataSource = new ProductData("tents");
-const listElement = document.querySelector(".product-list");
-const productList = new ProductList("tents", dataSource, listElement);
-productList.init();
-
-updateCartCount();
-*/
+import { getParam, updateCartCount,loadHeaderFooter  } from "./utils.mjs";
 
 loadHeaderFooter();
 
-const category = getParam('category');
-// first create an instance of the ProductData class.
+const category = getParam("category");
+
+function formatCategoryName(category) {
+  return category
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+document.querySelector(".products h2").textContent = `Top Products: ${formatCategoryName(category)}`;
+
+
 const dataSource = new ProductData();
-// then get the element you want the product list to render in
-const listElement = document.querySelector('.product-list');
-// then create an instance of the ProductList class and send it the correct information.
+const listElement = document.querySelector(".product-list");
 const myList = new ProductList(category, dataSource, listElement);
-// finally call the init method to show the products
 myList.init();
+
+updateCartCount();

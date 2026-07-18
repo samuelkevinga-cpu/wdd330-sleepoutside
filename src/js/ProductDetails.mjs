@@ -17,11 +17,11 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
-    const  cartItems = getLocalStorage("so-cart");
+    let cartItems = getLocalStorage("so-cart");
 
-    //if (!Array.isArray(cartItems)) {
-    //  cartItems = [];
-    //}
+    if (!Array.isArray(cartItems)) {
+      cartItems = [];
+    }
 
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
@@ -48,7 +48,7 @@ function productDetailsTemplate(product) {
     product.NameWithoutBrand;
 
   const productImage = document.querySelector(".product-image");
-  productImage.src = product.Image;
+  productImage.src = product.Images.PrimaryLarge;
   productImage.alt = product.NameWithoutBrand;
 
   document.querySelector(".product-price").textContent =
