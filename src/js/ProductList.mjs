@@ -19,12 +19,13 @@ export default class ProductList {
     this.dataSource = dataSource;
     this.listElement = listElement;
     this.quickView = new QuickView(dataSource);
+    this.list = [];
   }
 
   async init() {
     // Fetch the list of products from the API based on the category
-    const list = await this.dataSource.getData(this.category);
-    
+    this.list = await this.dataSource.getData(this.category);
+
     // Render the entire list returned by the API
     this.renderList(list);
 

@@ -22,7 +22,7 @@ export default class QuickView {
     const product = await this.dataSource.findProductById(productId);
 
     this.modalBody.innerHTML = `
-      <img src="${product.Image.replace("../", "/")}" alt="${product.Name}">
+      <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
       <h2>${product.Name}</h2>
       <p>${product.Brand.Name}</p>
       <p>$${product.FinalPrice}</p>
