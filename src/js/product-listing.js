@@ -82,8 +82,6 @@ function initSearch() {
   });
 }
 // --- 7. SORT FUNCTIONALITY ---
-
-// Initialize the search event listeners
 initSearch();
 loadHeaderFooter().then(() => {
 
