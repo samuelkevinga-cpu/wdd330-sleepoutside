@@ -61,15 +61,26 @@ export async function loadTemplate(path) {
   return template;
 }
 
+function applyBasePath(template) {
+  // Partials are plain HTML (not processed by Vite), so inject the site base.
+  return template.replaceAll("__BASE__", import.meta.env.BASE_URL);
+}
+
 export async function loadHeaderFooter() {
+  const base = import.meta.env.BASE_URL;
+
   //header
-  const headerTemplate = await loadTemplate("../partials/header.html");
+  const headerTemplate = applyBasePath(
+    await loadTemplate(`${base}partials/header.html`),
+  );
   const headerElement = document.querySelector("#main-header");
 
   renderWithTemplate(headerTemplate, headerElement);
 
   //footer
-  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const footerTemplate = applyBasePath(
+    await loadTemplate(`${base}partials/footer.html`),
+  );
   const footerElement = document.querySelector("#main-footer");
 
   renderWithTemplate(footerTemplate, footerElement);
