@@ -37,7 +37,7 @@ export default class ProductDetails {
 
     showFlashMessage(`${this.product.NameWithoutBrand} added to cart!`);
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "../index.html";
     }, 2000);
   }
 
