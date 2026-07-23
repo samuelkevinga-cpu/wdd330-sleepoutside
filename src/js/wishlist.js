@@ -5,7 +5,7 @@ function wishlistItemTemplate(item) {
     item.Images?.PrimaryMedium || item.Images?.PrimarySmall || item.Image || "";
 
   return `<li class="product-card">
-    <a href="../product_pages/index.html?product=${item.Id}">
+    <a href="${import.meta.env.BASE_URL}product_pages/index.html?product=${item.Id}">
       <img src="${image}" alt="${item.NameWithoutBrand || item.Name}" />
       <h3 class="card__brand">${item.Brand?.Name || ""}</h3>
       <h2 class="card__name">${item.NameWithoutBrand || item.Name}</h2>

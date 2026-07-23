@@ -3,7 +3,7 @@ import QuickView from "./QuickView.mjs";
 
 function productCardTemplate(product) {
   return `<li class="product-card">
-    <a href="../product_pages/index.html?product=${product.Id}">
+    <a href="${import.meta.env.BASE_URL}product_pages/index.html?product=${product.Id}">
       <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.NameWithoutBrand}">
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
