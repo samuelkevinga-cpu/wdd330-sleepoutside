@@ -89,7 +89,6 @@ loadHeaderFooter().then(() => {
 
   if (sortSelect) {
     sortSelect.addEventListener("change", (e) => {
-      console.log("Opción seleccionada:", e.target.value);
       myList.sortList(e.target.value);
     });
   }
